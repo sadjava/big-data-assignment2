@@ -1,6 +1,7 @@
 */kaggle.json
 *.parquet
 .venv.tar.gz
+*.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

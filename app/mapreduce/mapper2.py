@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys
 import re
 
@@ -7,8 +8,8 @@ def tokenize(text):
 for line in sys.stdin:
     try:
         doc_id, title, text = line.strip().split('\t')
-        terms = set(tokenize(title) + tokenize(text))  # Get unique terms per document
+        terms = tokenize(title) + tokenize(text)
         for term in terms:
-            print(f"{term}\t1")  # Emit each term once per document
+            print(f"{doc_id}\t{term}\t1")  # Emit each term occurrence
     except:
         continue

@@ -6,11 +6,11 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder \
     .appName('data preparation') \
     .master("local") \
-    .config("spark.sql.parquet.enableVectorizedReader", "true") \
+    .config("spark.sql.parquet.enableVectorizedReader", "false") \
     .getOrCreate()
 
 
-df = spark.read.parquet("/a.parquet")
+df = spark.read.parquet("hdfs://cluster-master:9000/a.parquet")
 n = 1000
 df = df.select(['id', 'title', 'text']).sample(fraction=100 * n / df.count(), seed=0).limit(n)
 
@@ -24,4 +24,4 @@ def create_doc(row):
 df.foreach(create_doc)
 
 
-# df.write.csv("/index/data", sep = "\t")
+df.write.csv("/index/data", sep = "\t")

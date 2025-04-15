@@ -17,10 +17,12 @@ venv-pack -o .venv.tar.gz
 
 # Collect data
 bash prepare_data.sh
-
+python app.py
 
 # Run the indexer
-bash index.sh data/sample.txt
+bash index.sh /index/data
 
 # Run the ranker
-bash search.sh "this is a query!"
+bash search.sh "A film little game"
+bash search.sh "Discovering America"
+bash search.sh "Merry Christmas"
